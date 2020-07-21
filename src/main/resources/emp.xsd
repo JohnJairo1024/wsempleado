@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://localhost/empleado-ws"
+           targetNamespace="http://localhost/empleado-ws" elementFormDefault="qualified">
+
+    <xs:element name="getEmpleadoByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idEmpleado" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getEmpleadoByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="empleadoInfo" type="tns:empleadoInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="empleadoInfo">
+        <xs:sequence>
+            <xs:element name="idEmpleado" type="xs:long"/>
+            <xs:element name="nombre" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="getAllEmpleadosRequest">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="getAllEmpleadosResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="empleadoInfo" type="tns:empleadoInfo" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="serviceStatus">
+        <xs:sequence>
+            <xs:element name="statusCode" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="nuevoEmpleadoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombres" type="xs:string"/>
+                <xs:element name="apellidos" type="xs:string"/>
+                <xs:element name="tipo_documento" type="xs:string"/>
+                <xs:element name="numero_documento" type="xs:string"/>
+                <xs:element name="fecha_nacimiento" type="xs:date"/>
+                <xs:element name="fecha_vinculacion" type="xs:date"/>
+                <xs:element name="cargo" type="xs:string"/>
+                <xs:element name="salario" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="nuevoEmpleadoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+                <xs:element name="empleadoInfo" type="tns:empleadoInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="actualizarEmpleadoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="empleadoInfo" type="tns:empleadoInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="actualizarEmpleadoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="eliminarEmpleadoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idEmpleado" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="eliminarEmpleadoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
