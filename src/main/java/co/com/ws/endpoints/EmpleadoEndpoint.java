@@ -11,6 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,8 +50,10 @@ public class EmpleadoEndpoint {
         // Recorremos los empleados
         allEmpleados.forEach(empleado -> {
             EmpleadoInfo empleadoInfo = new EmpleadoInfo();
-            empleadoInfo.setIdEmpleado(empleado.getIdEmpleado());
-            empleadoInfo.setNombre(empleado.getNombres());
+            XMLGregorianCalendar fechaNacimiento = FechaUtil.toXMLGregorianCalendar(empleado.getFechaNacimiento());
+            empleadoInfo.setFechaNacimiento(fechaNacimiento);
+            XMLGregorianCalendar fechaVinculacion = FechaUtil.toXMLGregorianCalendar(empleado.getFechaVinculacion());
+            empleadoInfo.setFechaVinculacion(fechaVinculacion);
             empleadoInfos.add(empleadoInfo);
         });
         response.getEmpleadoInfo().addAll(empleadoInfos);
